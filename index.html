@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGPA</title>
+    <style>
+        body{
+            background-color: lightblue;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
+        }
+        .Calculator{
+            margin-top: 20px;
+            padding: 20px;
+            background-color: lightgray;
+            border-radius: 20px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+        }
+        
+        table{
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 10px;
+        }
+        td{
+            padding: 5px;
+        }
+        label{
+            font-weight: bold;
+            display: inline-block;
+            width: 100px;
+            text-align: right;
+        }
+        input{
+            width: 200px;
+            border: 1px solid ;
+            border-radius: 5px;
+        }
+        button{
+            
+            padding-left: 20px;
+            padding-right: 20px;
+            border-radius: 5px;
+            background-color: rgb(161, 254, 254);
+            
+        }
+        button:hover{
+            background-color: aqua;
+        }
+        .button1{
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .result_field{
+            display: flex;
+            flex-direction: column;
+            gap:10px;
+            align-items: center;
+        }
+    </style>
+    <script>
+        function CGPA() {
+    
+    const s0 = document.getElementById("DAA").value.toUpperCase();
+    const s01 = value(s0);
+
+    const s1 = document.getElementById("WP").value.toUpperCase();
+    const s11=value(s1);
+    const s2 = document.getElementById("CN").value.toUpperCase();
+    const s22=value(s2);
+    const s3 = document.getElementById("ML").value.toUpperCase();
+    const s33=value(s3);
+    const s4 = document.getElementById("BEFA").value.toUpperCase();
+    const s44=value(s4);
+    const s5 = document.getElementById("CN_LAB").value.toUpperCase();
+    const s55=value(s5);
+    const s6 = document.getElementById("ML_LAB").value.toUpperCase();
+    const s66=value(s6);
+    const s7 = document.getElementById("UIF_LAB").value.toUpperCase();
+    const s77=value(s7);
+    const s8 = document.getElementById("ENG_LAB").value.toUpperCase();
+    const s88=value(s8);
+
+    if (isNaN(s01) || isNaN(s11) || isNaN(s22) || isNaN(s33) || isNaN(s44) || isNaN(s55) || isNaN(s66) || isNaN(s77) || isNaN(s88)) {
+        document.getElementById("result").innerText = "Please fill all fields correctly.";
+        document.getElementById("Per").innerText = "";
+        document.getElementById("F").innerText = "";
+        document.getElementById("message").innerText = "";
+        return;
+    }
+
+    const s_0 = s01 * 4;
+    const s_1 = s11 * 3;
+    const s_2 = s22 * 3;
+    const s_3 = s33 * 3;
+    const s_4 = s44 * 3;
+    const s_5 = s55 * 1;
+    const s_6 = s66 * 1;
+    const s_7 = s77 * 1;
+    const s_8 = s88 * 1;
+
+    const CGPA = (s_0 + s_1 + s_2 + s_3 + s_4 + s_5 + s_6 + s_7 + s_8) / 20;
+    let message=document.getElementById("message");
+    message.innerText="🎉Congratulations!!🎉";
+    message.style.color="green";
+    message.style.display="block";
+    document.getElementById("result").innerText = "CGPA: " + CGPA;
+
+    const Per = (CGPA - 0.5) * 10;
+    document.getElementById("Per").innerText = "Percentage: " + Per+ "%";
+
+    document.getElementById("F").innerText = CGPA >= 5 ? "PASS" : "FAIL";
+}
+
+function value(grade) {
+    const gradeMap = {
+        "O": 10,
+        "A+": 9,
+        "A": 8,
+        "B+": 7,
+        "B": 6,
+        "C": 5,
+        "F": 0
+    };
+
+    return gradeMap[grade] || NaN; // Return NaN for invalid grades
+}
+    </script>
+</head>
+<body>
+    <div class="Calculator">
+        <h1>JNTUH 3-1 CGPA Calculator(R22 AIML)</h1>
+        <h3>Enter the subject grade(ex:O,A+,A.....)</h3><br>
+        <div class="subjects">
+        <table>
+            <tr><td><label>DAA:</label><input type="text" name="DAA" id="DAA"><br></td></tr>
+            <tr><td><label>WP:</label><input type="text" name="WP" id="WP"><br></td></tr>
+            <tr><td><label>CN:</label><input type="text" name="CN" id="CN"><br></td></tr>
+            <tr><td><label>ML:</label><input type="text" name="ML" id="ML"><br></td></tr>
+            <tr><td><label>BEFA:</label><input type="text" name="BEFA" id="BEFA"><br></td></tr>
+            <tr><td><label>CN_LAB:</label><input type="text" name="CN_LAB" id="CN_LAB"><br></td></tr>
+            <tr><td><label>ML_LAB:</label><input type="text" name="ML_LAB" id="ML_LAB"><br></td></tr>
+            <tr><td><label>UIF_LAB:</label><input type="text" name="UIF_LAB" id="UIF_LAB"><br></td></tr>
+            <tr><td><label>ENG_LAB:</label><input type="text" name="ENG_LAB" id="ENG_LAB"><br></td></tr>
+        </table>
+    </div>
+           <div class="button1"> <button onclick="CGPA()">GET CGPA</button></div>
+           <div class="result_field">
+            <div id="message"></div>
+            <div id="result"></div>
+            <div id="Per"></div>
+            <div id="F"></div>
+            </div>
+        <marquee style="color: red;">Note:if you have any backlog don't use this Calculator</marquee>
+    </div>
+    
+    
+</body>
+</html>
